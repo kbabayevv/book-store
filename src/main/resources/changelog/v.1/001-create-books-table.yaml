@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001
+      author: kbabayevv
+      comment: Create new books table
+      changes:
+        - createTable:
+            tableName: books
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: book_pkey
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: author_id
+                  type: BIGINT
+                  foreignKeyName: fk_books_author
+                  references:
+                    tableName: users
+                    column: id
+                    onDelete: CASCADE
+              - column:
+                  name: reader_id
+                  type: BIGINT
+                  foreignKeyName: fk_books_reader
+                  references:
+                    tableName: users
+                    column: id
+                    onDelete: CASCADE

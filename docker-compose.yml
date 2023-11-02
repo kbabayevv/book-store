@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  db:
+    container_name: book-store-db
+    image: postgres:14.5
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    ports:
+      - '5433:5432'
+    volumes:
+      - ../../docker-volumes/book-store-db:/var/lib/postgresql/data
+

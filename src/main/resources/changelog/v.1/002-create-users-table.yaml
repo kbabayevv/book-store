@@ -1,0 +1,34 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002
+      author: kbabayevv
+      comment: Create new users table
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: user_pkey
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: name
+                  type: VARCHAR(50)
+              - column:
+                  name: email
+                  type: VARCHAR(50)
+              - column:
+                  name: password
+                  type: VARCHAR(100)
+              - column:
+                  name: book_id
+                  type: BIGINT
+                  foreignKeyName: fk_users_book
+                  references:
+                    tableName: books
+                    column: id
+                    onDelete: CASCADE

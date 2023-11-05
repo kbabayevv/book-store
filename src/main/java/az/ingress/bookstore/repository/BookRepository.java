@@ -16,7 +16,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     @EntityGraph(type = EntityGraph.EntityGraphType.FETCH, attributePaths = "readers")
     Optional<Book> findReadersById(Long id);
 
-    List<Book> findBookByAuthorId(Long id);
+    Optional<Book> findByIdAndAuthorId(Long id, Long authorId);
 
     @EntityGraph(type = EntityGraph.EntityGraphType.FETCH, attributePaths = "readers")
     Optional<Book> findById(Long id);

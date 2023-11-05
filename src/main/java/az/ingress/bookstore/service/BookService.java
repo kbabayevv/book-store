@@ -68,15 +68,8 @@ public class BookService {
                 .collect(Collectors.toList());
     }
 
-    public void deleteBook(Long bookId, Long authorId) {
-        // Check if the book belongs to the author
-        List<Book> books = bookRepository.findBookByAuthorId(authorId);
-        Book bookToDelete = books.stream()
-                .filter(book -> book.getId().equals(bookId))
-                .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Book not found or does not belong to the author."));
-
-        bookRepository.deleteById(bookToDelete.getId());
+    public void deleteBook(Long bookId) {
+     bookRepository.findByIdAndAuthorId(bookId,SecurityUtil.getLoggedUserId()).ifPresent(bookRepository::delete);
     }
 
     private User getUserById() {

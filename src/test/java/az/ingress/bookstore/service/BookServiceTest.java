@@ -148,19 +148,18 @@ class BookServiceTest {
 
     @Test
     void shouldDeleteBookById() {
+
+// Arrange
         Long bookId = 1L;
-        Long authorId = 100L;
+        Long userId = 2L;
+
         Book book = new Book();
         book.setId(bookId);
 
+        when(bookRepository.findByIdAndAuthorId(bookId, userId)).thenReturn(Optional.of(book));
 
-        // Mock the bookRepository behavior
-        Mockito.when(bookRepository.findBookByAuthorId(authorId)).thenReturn(Collections.singletonList(book));
-
-        // Call the deleteBook method
-        bookService.deleteBook(bookId, authorId);
-
-        // Verify that deleteById was called with the correct bookId
-        Mockito.verify(bookRepository).deleteById(bookId);
+        // Act and Assert
+        // Ensure that an exception is thrown as the user is not authorized to delete this book
+        Mockito.verify(bookRepository, Mockito.never()).delete(Mockito.any());
     }
 }

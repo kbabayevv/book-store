@@ -5,6 +5,7 @@ import az.ingress.bookstore.rest.dto.request.BookRequestDTO;
 import az.ingress.bookstore.rest.dto.response.BookResponseDTO;
 import az.ingress.bookstore.rest.dto.response.UserResponseDTO;
 import az.ingress.bookstore.service.BookService;
+import az.ingress.bookstore.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,13 +52,9 @@ public class BookController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteBook(@PathVariable Long id, @RequestParam Long authorId) {
-        try {
-            bookService.deleteBook(id, authorId);
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
+    public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
+        bookService.deleteBook(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
 }

@@ -8,7 +8,6 @@
 - Gradle
 - Java 11
 - Spring BOOT (Web, Security, Data JPA)
-- JPA Specification
 - PostgreSQL
 - Liquibase
 - ModelMapper

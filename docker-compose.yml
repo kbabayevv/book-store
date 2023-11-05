@@ -16,9 +16,9 @@ services:
     image: book-store-app:0.0.1
     container_name: book-store-app
     environment:
-      DATABASE_HOSTNAME: database
+      DATABASE_HOSTNAME: db
     restart: on-failure
     ports:
       - 8002:8002
     depends_on:
-      - database
+      - db

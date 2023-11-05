@@ -29,7 +29,7 @@ public class UniqueFieldValidator implements ConstraintValidator<UniqueField, Ob
 
         try {
             Query query = entityManager.createQuery("select t.id from " + entityName + " t where t." + fieldName + " = :fieldValue ");
-            Integer id = (Integer) query.setParameter("fieldValue", fieldValue).getSingleResult();
+            Long id = (Long) query.setParameter("fieldValue", fieldValue).getSingleResult();
 
             return id == null;
         } catch (NoResultException ignored) {

@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 002
+      id: 20230311-01-create-users-table
       author: kbabayevv
       comment: Create new users table
       changes:
@@ -23,12 +23,7 @@ databaseChangeLog:
                   type: VARCHAR(50)
               - column:
                   name: password
-                  type: VARCHAR(100)
+                  type: VARCHAR(255)
               - column:
-                  name: book_id
-                  type: BIGINT
-                  foreignKeyName: fk_users_book
-                  references:
-                    tableName: books
-                    column: id
-                    onDelete: CASCADE
+                  name: role
+                  type: int

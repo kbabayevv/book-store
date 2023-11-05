@@ -1,12 +1,13 @@
 package az.ingress.bookstore.entity;
 
-import az.ingress.bookstore.entity.enumertion.RoleName;
+import az.ingress.bookstore.entity.enumeration.RoleName;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -20,7 +21,6 @@ public class User {
     String name;
     String email;
     String password;
-
-    @Enumerated(EnumType.STRING)
     RoleName role; // Author or Student
+
 }

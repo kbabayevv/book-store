@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 001
+      id: 20230311-02-create-books-table
       author: kbabayevv
       comment: Create new books table
       changes:
@@ -19,18 +19,13 @@ databaseChangeLog:
                   name: name
                   type: VARCHAR(255)
               - column:
+                  constraints:
+                    nullable: false
                   name: author_id
                   type: BIGINT
-                  foreignKeyName: fk_books_author
-                  references:
-                    tableName: users
-                    column: id
-                    onDelete: CASCADE
-              - column:
-                  name: reader_id
-                  type: BIGINT
-                  foreignKeyName: fk_books_reader
-                  references:
-                    tableName: users
-                    column: id
-                    onDelete: CASCADE
+        - addForeignKeyConstraint:
+            baseColumnNames: author_id
+            baseTableName: books
+            constraintName: fk_books_users_author_id
+            referencedColumnNames: id
+            referencedTableName: users

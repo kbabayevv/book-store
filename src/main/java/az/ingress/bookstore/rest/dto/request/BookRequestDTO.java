@@ -1,14 +1,11 @@
-package az.ingress.bookstore.rest.dto;
+package az.ingress.bookstore.rest.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.List;
 
 @Getter
 @Setter
@@ -18,16 +15,10 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Builder
 @ToString
-public class BookDTO {
+public class BookRequestDTO {
     Long id;
 
     @NotEmpty
     @Size(min = 1, max = 255)
     String name;
-
-    @NotEmpty
-    Long authorId;
-
-    @NotEmpty
-    List<Long> readerIds;
 }

@@ -1,19 +1,22 @@
-package az.ingress.bookstore.rest.dto;
+package az.ingress.bookstore.rest.dto.request;
 
 import az.ingress.bookstore.entity.User;
-import az.ingress.bookstore.entity.enumertion.RoleName;
+import az.ingress.bookstore.entity.enumeration.RoleName;
 import az.ingress.bookstore.validation.UniqueField;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserDTO {
+public class UserRequestDTO {
     Long id;
 
     @NotEmpty
@@ -28,12 +31,12 @@ public class UserDTO {
 
     @NotEmpty
     @Size(min = 6, max = 100)
-    private String password;
+    String password;
 
-    @NotEmpty
+    @NotNull
     RoleName role; // Author or Student
 
-    public UserDTO(User user) {
+    public UserRequestDTO(User user) {
         this.id = user.getId();
         this.name = user.getName();
         this.email = user.getEmail();
